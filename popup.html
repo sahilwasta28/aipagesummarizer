@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-hover: #1669c1;
+            --bg-color: #f7f9fc;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --muted-text: #666;
+            --border-radius: 10px;
+        }
+
+        body {
+            width: 400px;
+            padding: 20px;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .api-key-section, .summary-section, .saved-summaries {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .api-key-section input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 13px;
+            box-sizing: border-box;
+        }
+
+        .api-key-section small {
+            display: block;
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--muted-text);
+        }
+
+        .api-key-section a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .secondary-btn {
+            background-color: #e0e7ef;
+            color: var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: #d4dee9;
+        }
+
+        .summary-section h3,
+        .saved-summaries h3 {
+            font-size: 16px;
+            margin: 0 0 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .summary-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .summary-list li:before {
+            content: "• ";
+            color: var(--primary-color);
+            margin-right: 6px;
+        }
+
+        .error {
+            color: #d93025;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .saved-item {
+            background: #f1f4f9;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .saved-item:hover {
+            background: #e6ecf5;
+        }
+
+        .saved-item-title {
+            font-weight: 500;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .saved-item-date {
+            font-size: 11px;
+            color: var(--muted-text);
+        }
+
+        #saveBtn, #downloadBtn {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        #summaryContent {
+            max-height: 180px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 AI Page Summarizer 📝</h1>
+    </div>
+
+    <div class="api-key-section">
+        <input type="password" id="apiKey" placeholder="Enter your Groq API key">
+        <small>Get a free API key from <a href="https://console.groq.com" target="_blank">console.groq.com</a></small>
+    </div>
+
+    <div class="controls">
+        <button id="summarizeBtn" class="primary-btn">Summarize Page</button>
+        <button id="viewSavedBtn" class="secondary-btn">View Saved</button>
+    </div>
+
+    <div id="summarySection" class="summary-section" style="display: none;">
+        <h3>Summary</h3>
+        <div id="summaryContent"></div>
+        <button id="saveBtn" class="primary-btn">Save Summary</button>
+    </div>
+
+    <div id="savedSummaries" class="saved-summaries" style="display: none;">
+        <h3>Saved Summaries</h3>
+        <div id="savedContent"></div>
+        <button id="downloadBtn" class="primary-btn">Download as TXT</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
