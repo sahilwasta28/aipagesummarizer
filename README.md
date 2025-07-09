@@ -93,7 +93,6 @@ This project helped me learn:
 
 ## 🔗 Connect With Me
 
-🌐 [LinkedIn](www.linkedin.com/in/sahilwasta2803)  
 📁 [Portfolio](https://sahilwasta28.github.io/sahilwasta28.portfolio.github.io/)
 
 ---
